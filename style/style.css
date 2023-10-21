@@ -1,0 +1,54 @@
+.navbarcontainer{
+    height: 80px;
+    width: 100%;
+    background-color: rgb(46, 46, 46);
+    display: flex;
+    align-items: center;
+}
+.navcontent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    height: 80px;
+    /* background-color: red; */
+}
+.logo{
+    /* background-color: rebeccapurple; */
+}
+.navlinksContianer{
+    background-color: red;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    height: 80px;
+}
+.navlinks{
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    width: 100%;
+    align-items: center;
+    height: 80px;
+}
+
+.a1{
+    width: 100% !important;
+    border: none !important;
+  }
+  
+  
+  a,h3 {
+    display: inherit;
+   
+  }
+  .col-lg.col-3 img {
+    width: 59% !important;
+    height: 99px !important;
+  }
+  
+  .releted{
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    margin-top: 20px !important;
+  }

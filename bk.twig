@@ -1,0 +1,317 @@
+{% extends "layouts/_layout" %}
+
+{% block style %}
+	{% include "layouts/additionalLink/theWayHome" %}
+	{% include "layouts/additionalLink/digitalOutreach" %}
+{% endblock %}
+
+{% block content %}
+	{% set entry = craft.entries.section('theWayHome').one() %}
+	{% if entry %}
+		<div class="uabb-js-breakpoint" style="display: none;"></div>
+		<div id="fl-main-content" class="fl-page-content" itemprop="mainContentOfPage" role="main">
+
+			<div class="fl-content-full container">
+				<div class="row">
+					<div class="fl-content col-md-12">
+						<article class="fl-post post-26 page type-page status-publish has-post-thumbnail hentry" id="fl-post-26" itemscope="itemscope" itemtype="https://schema.org/CreativeWork">
+
+							<div class="fl-post-content clearfix" itemprop="text">
+								<div class="fl-builder-content fl-builder-content-26 fl-builder-content-primary fl-builder-global-templates-locked" data-post-id="26">
+									<div class="fl-row fl-row-full-width fl-row-bg-photo fl-node-x8b4u7qho3cp fl-row-custom-height fl-row-align-top fl-row-bg-overlay" data-node="x8b4u7qho3cp">
+										<div class="fl-row-content-wrap" {% if entry.bannerImage %} style="background-image: url({{entry.bannerImage.one().url}});" {% endif %}>
+											<div class="uabb-row-separator uabb-top-row-separator"></div>
+											<div class="fl-row-content fl-row-fixed-width fl-node-content">
+
+												<div class="fl-col-group fl-node-4d6lx1opuwjg" data-node="4d6lx1opuwjg">
+													<div class="fl-col fl-node-cd086ya5fxge" data-node="cd086ya5fxge">
+														<div class="fl-col-content fl-node-content">
+															<div class="fl-module fl-module-info-box fl-node-87f14p63qhaw" data-node="87f14p63qhaw">
+																<div class="fl-module-content fl-node-content">
+																	<div class="uabb-module-content uabb-infobox infobox-right infobox-responsive-left ">
+																		<div class="uabb-infobox-left-right-wrap">
+																			<div class="uabb-infobox-content">
+																				<div class='uabb-infobox-title-wrap'>
+																					<h1 class="uabb-infobox-title">{{entry.bannerTitle}}</h1>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									{% for block in entry.contentAfterBanner.all() %}
+
+										{% if loop.index == 1 or loop.index == 2 %}
+											{% if block.type == 'leftContent' %}
+												<div class="fl-row fl-row-full-width fl-row-bg-photo fl-node-exgvuw51d9rl uabb-bottom-row uabb-xlarge_triangle" data-node="exgvuw51d9rl">
+													<div class="fl-row-content-wrap">
+														<div class="uabb-row-separator uabb-top-row-separator"></div>
+														<div class="uabb-row-separator uabb-bottom-row-separator uabb-xlarge-triangle uabb-has-svg">
+															<svg class="uasvg-xlarge-triangle" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="#ffffff" opacity="1" width="100" height="150" viewbox="0 0 4.66666 0.333331" preserveaspectratio="none"><path class="fil0" d="M-0 0.333331l4.66666 0 0 -3.93701e-006 -2.33333 0 -2.33333 0 0 3.93701e-006zm0 -0.333331l4.66666 0 0 0.166661 -4.66666 0 0 -0.166661zm4.66666 0.332618l0 -0.165953 -4.66666 0 0 0.165953 1.16162 -0.0826181 1.17171 -0.0833228 1.17171 0.0833228 1.16162 0.0826181z"/></svg>
+														</div>
+														<div class="fl-row-content fl-row-fixed-width fl-node-content">
+
+															<div class="fl-col-group fl-node-uanx7eicwhdp fl-col-group-equal-height fl-col-group-align-center fl-col-group-custom-width fl-col-group-responsive-reversed" data-node="uanx7eicwhdp">
+																<div class="fl-col fl-node-lfdc8ob1jrg5 fl-col-small" data-node="lfdc8ob1jrg5">
+																	<div class="fl-col-content fl-node-content">
+																		<div class="fl-module fl-module-rich-text fl-node-4duk7m5xzrot" data-node="4duk7m5xzrot">
+																			<div class="fl-module-content fl-node-content content1">
+																				<div class="fl-rich-text">
+																					<p>{{block.description}}</p>
+
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															{% endif %}
+															{% if block.type == 'rightContent' %}
+																<div class="fl-col fl-node-g0vms5fbo213 fl-col-small" data-node="g0vms5fbo213">
+																	<div class="fl-col-content fl-node-content">
+																		<div class="fl-module fl-module-photo fl-node-thub4l2y3fwc" data-node="thub4l2y3fwc">
+																			<div class="fl-module-content fl-node-content">
+																				<div class="fl-photo fl-photo-align-center" itemscope itemtype="https://schema.org/ImageObject">
+																					<div class="fl-photo-content fl-photo-img-jpg">
+																						{% if block.image.one() %}
+																							<img decoding="async" loading="lazy" class="fl-photo-img wp-image-2616 size-full" src="{{block.image.one().url}}" alt="" sizes="(max-width: 636px) 100vw, 636px"/>
+																						{% endif %}
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											{% endif %}
+										{% endif %}
+									{% endfor %}
+
+
+									<div id="img-row" class="fl-row fl-row-full-width fl-row-bg-color fl-node-cm5s8ekp4q70" data-node="cm5s8ekp4q70">
+										<div class="fl-row-content-wrap">
+											<div class="uabb-row-separator uabb-top-row-separator"></div>
+											<div class="fl-row-content fl-row-fixed-width fl-node-content">
+
+												<div class="fl-col-group fl-node-d2jx47bhmt18" data-node="d2jx47bhmt18">
+													<div class="fl-col fl-node-wcatg74p3u62" data-node="wcatg74p3u62">
+														<div class="fl-col-content fl-node-content">
+															<div class="fl-module fl-module-rich-text fl-node-1xbuhyecm85q" data-node="1xbuhyecm85q">
+																{% for block in entry.storyLine.all() %}
+																	{% if loop.index == 1 %}
+																		<div class="fl-module-content fl-node-content">
+																			<div class="fl-rich-text">
+																				{% if block.type == 'leftContent' %}
+																					{{block.description}}
+																				{% endif %}
+																			{% endif %}
+																		{% endfor %}
+																		{% for block in entry.storyLine.all() %}
+																			{% if loop.index == 2 %}
+																				{% if block.type == 'rightContent' %}
+																					{% if block.image.one() %}
+																						<p><img decoding="async" loading="lazy" class="alignright wp-image-2868" src="{{block.image.one().url}}" alt="" width="500" sizes="(max-width: 500px) 100vw, 500px" style="width: {{block.imageWidth}}; height: {{block.imageHeight}}"/>"It’s for those who look around at the suffering and strife everywhere and reasonably ask, "If God is good, why does he allow all of this pain, misery and hostility?""</p>
+																					{% endif %}
+																				{% endif %}
+																			{% endif %}
+																		{% endfor %}
+																		{% for block in entry.storyLine.all() %}
+																			{% if loop.index == 1 %}
+																				{% if block.type == 'leftContent' %}
+																					<p>
+																						{{block.additionalDescription}}
+																					</p>
+																				{% endif %}
+																			{% endif %}
+																		{% endfor %}
+																	</div>
+																</div>
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								{# <div class="fl-row fl-row-full-width fl-row-bg-color fl-node-plc1q9kxgzfw" data-node="plc1q9kxgzfw">
+									<div class="fl-row-content-wrap">
+										<div class="uabb-row-separator uabb-top-row-separator"></div>
+										<div class="fl-row-content fl-row-fixed-width fl-node-content">
+
+											<div class="fl-col-group fl-node-4avbm7yj1fl8" data-node="4avbm7yj1fl8">
+												<div class="fl-col fl-node-03cj4o1ekbrz" data-node="03cj4o1ekbrz">
+													<div class="fl-col-content fl-node-content">
+														<div class="fl-module fl-module-photo fl-node-zu1yxniop4w0" data-node="zu1yxniop4w0">
+															<div class="fl-module-content fl-node-content">
+																<div class="fl-photo fl-photo-align-center" itemscope itemtype="https://schema.org/ImageObject">
+																	{% for block in entry.storyLine.all() %}
+																		{% if loop.index == 4 %}
+																			{% if block.type == 'rightContent' %}
+																				<div class="fl-photo-content fl-photo-img-jpg" style="width: 100%">
+
+																					{% if block.image.one() %}
+																						<img decoding="async" loading="lazy" class="fl-photo-img wp-image-2922 size-full" src="{{block.image.one().url}}" alt="Stewart" itemprop="image" height="1080" width="721" title="Stewart" sizes="(max-width: 721px) 100vw, 721px" style="width: {{block.imageWidth}}; height: {{block.imageHeight}};"/>
+																					{% endif %}
+
+																				</div>
+																			{% endif %}
+																		{% endif %}
+																	{% endfor %}
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="fl-col-group fl-node-ifcb2p1z568a" data-node="ifcb2p1z568a">
+												<div class="fl-col fl-node-3p7kgh4rofzm" data-node="3p7kgh4rofzm">
+													<div class="fl-col-content fl-node-content">
+														<div class="fl-module fl-module-rich-text fl-node-pnigkfemdw93" data-node="pnigkfemdw93">
+															<div class="fl-module-content fl-node-content" style="margin-top: 10px;">
+																{% for block in entry.storyLine.all() %}
+																	{% if loop.index == 3 %}
+																		{% if block.type == 'leftContent' %}
+																			<div class="fl-rich-text">
+
+																				<p>{{block.description}}</p>
+
+																			</div>
+																		{% endif %}
+																	{% endif %}
+																{% endfor %}
+															</div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div> #}
+							</div>
+
+							<div class="uabb-js-breakpoint" style="display: none;"></div>
+						</div>
+						<!-- .fl-post-content -->
+
+					</article>
+					<article
+                    class="fl-post post-28 page type-page status-publish has-post-thumbnail hentry"
+                    id="fl-post-28" itemscope="itemscope"
+                    itemtype="https://schema.org/CreativeWork" style="margin:auto;">
+
+                    <div class="fl-post-content clearfix" itemprop="text">
+                        <div
+                            class="fl-builder-content fl-builder-content-28 fl-builder-content-primary fl-builder-global-templates-locked"
+                            data-post-id="28">
+							<h2 class="heading-title" style="margin-bottom: 25px; text-align:center">
+								<span class="title-text pp-primary-title">{{entry.leadershipTitle}}</span>
+							</h2>
+                            <div id="img-row"
+                                class="fl-row fl-row-full-width fl-row-bg-color fl-node-oaf8e1d2vmrk"
+                                data-node="oaf8e1d2vmrk">
+                                <div class="fl-row-content-wrap">
+                                    <div
+                                        class="uabb-row-separator uabb-top-row-separator">
+                                    </div>
+                                    <div
+                                        class="fl-row-content fl-row-fixed-width fl-node-content">
+
+                                        <div
+                                            class="fl-col-group fl-node-hg0a6tkr7qpu fl-col-group-equal-height fl-col-group-align-top fl-col-group-custom-width fl-col-group-responsive-reversed"
+                                            data-node="hg0a6tkr7qpu">
+											{% for block in entry.storyLine.all() %}
+											{% if loop.index == 3 or loop.index == 4 %}
+                                    		{% if block.type == 'leftContent' %}
+                                            <div
+                                                class="fl-col fl-node-qyz5d03nfehb fl-col-small"
+                                                data-node="qyz5d03nfehb">
+                                                <div
+                                                    class="fl-col-content fl-node-content"><div
+                                                        class="fl-module fl-module-rich-text fl-node-154gtlferuio"
+                                                        data-node="154gtlferuio">
+                                                        <div
+                                                            class="fl-module-content fl-node-content">
+                                                            <div
+                                                                class="fl-rich-text">
+
+                                                                    {{block.description}}
+                                                              
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											{% endif %}
+											{% if block.type == 'rightContent' %}
+                                            <div
+                                                class="fl-col fl-node-car0zk2u6wq3"
+                                                data-node="car0zk2u6wq3">
+                                                <div
+                                                    class="fl-col-content fl-node-content"><div
+                                                        class="fl-module fl-module-photo fl-node-hvxb5lq9tu3o"
+                                                        data-node="hvxb5lq9tu3o">
+                                                        <div
+                                                            class="fl-module-content fl-node-content">
+                                                            <div
+                                                                class="fl-photo fl-photo-align-left"
+                                                                itemscope
+                                                                itemtype="https://schema.org/ImageObject">
+                                                                <div class="fl-photo-content fl-photo-img-jpeg">
+                                                                    
+                                                                    {% if block.image.one() %}
+                                                                    <img
+                                                                        decoding="async"
+                                                                        loading="lazy"
+                                                                        class="fl-photo-img wp-image-2771 size-full"
+                                                                        src="{{block.image.one().url}}"
+                                                                        alt="digital4"
+                                                                        itemprop="image"
+                                                                        title="digital4"
+                                                                        srcset="{{block.image.one().url}} 984w, {{block.image.one().url}} 300w, {{block.image.one().url}} 768w"
+                                                                        sizes="(max-width: 984px) 100vw, 984px" style="height: {{block.imageHeight}}; width: {{block.imageWidth}};object-fit: cover;" />
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											{% endif %}
+											{% endif %}
+											{% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							
+                        </div>
+                        <div class="uabb-js-breakpoint" style="display: none;"></div>
+                    </div><!-- .fl-post-content -->
+
+                </article>
+
+					<!-- .fl-post -->
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+{% else %}
+	<p>the-way-home entry is disabled!</p>
+{% endif %}{% endblock %}

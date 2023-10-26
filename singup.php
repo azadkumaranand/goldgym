@@ -1,10 +1,41 @@
 <?php
 require "connect.php";
+function emailValidation($email){
+    $emailPattern = '/^[a-zA-Z]{2,10}+[0-9]*@[a-zA-Z]+.[a-zA-Z]{2,3}$/';
+    return preg_match($emailPattern, $email);
+}
+function phoneValidation($phone){
+    $phonePattern = '/^[0-9]{10,10}$/';
+    return preg_match($phonePattern, $phone);
+}
+function nameValidation($name){
+    $Pattern = '/^[a-zA-Z ]{3,100}+$/';
+    return preg_match($Pattern, $name);
+}
+
+
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $name = htmlspecialchars(strtolower($_POST['name']));
     $phone = htmlspecialchars(strtolower($_POST['phone']));
     $email = htmlspecialchars(strtolower($_POST['email']));
-    $pass = htmlspecialchars(strtolower($_POST['password']));
+    $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    // $error = array();
+
+    if(!nameValidation($name)){
+        $error = "Please enter a valid name";
+        header("Location: index.php/?error=$error");
+    }
+
+    if(!phoneValidation($phone)){
+        $error = "Please enter a vlid phone number";
+        header("Location: index.php/?error=$error");
+    }
+    if(!emailValidation($email)){
+        $error = "Please enter a vlid email";
+        header("Location: index.php/?error=$error");
+    }
+    
 
     // echo $name." ".$phone." ".$phone." ".$email;
     /* procedural wal to insert data in database not very good way*/
@@ -33,25 +64,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     }
 }
 
-function emailValidation($email){
-    $emailPattern = '/^[a-zA-Z]{2,10}+[0-9]*@+[a-zA-Z]+.+[a-zA-Z]{3,3}$/';
-    return preg_match($emailPattern, $email);
-}
-function phoneValidation($phone){
-    $phonePattern = '/^[0-9]{10,10}$/';
-    return preg_match($phonePattern, $phone);
-}
-function nameValidation($name){
-    $Pattern = '/^[a-zA-Z ]{3,100}+$/';
-    return preg_match($Pattern, $name);
-}
 
-$result = emailValidation("azad9798@gmail.com");
-$result = phoneValidation("978464797");
-$result = nameValidation("azad kumar");
-if($result){
-    echo "pattern matched";
-}else{
-    echo "pattern didn't matched";
-}
+// $result = emailValidation("azad9798@gmail.com");
+// $result = phoneValidation("978464797");
+// $result = nameValidation("azad kumar");
+// if($result){
+//     echo "pattern matched";
+// }else{
+//     echo "pattern didn't matched";
+// }
 ?>

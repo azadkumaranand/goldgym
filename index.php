@@ -12,7 +12,7 @@
 
 <body>
   <!-- singup modal -->
-  <div class="modal fade" id="signmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="signmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,6 +21,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <div class="container">
+                    <?php if(isset($_GET['error']) || !empty($_GET['error'])){ ?>
+                        <p class="bg-danger p-4"><?php echo $_GET['error'] ?></p>
+                    <?php } ?>
+                </div>
                 <form method="post" action='singup.php'>
                     <div class="mb-3">
                         <label for="inputname" class="form-label">Name</label>
@@ -38,12 +43,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="password">
+                        <input type="text" name="password" class="form-control" id="password">
                     </div>
                     
                     <div class="mb-3">''
                         <label for="comfirm_pass" class="form-label">Confirm Password</label>
-                        <input type="password" name="comfirm_pass" class="form-control" id="comfirm_pass">
+                        <input type="text" name="comfirm_pass" class="form-control" id="comfirm_pass">
                     </div>
                     <div style="float: right;">
                         <button type="submit" class="btn btn-primary">Sign
@@ -54,6 +59,7 @@
         </div>
     </div>
 </div>
+
   <!-- singup modal end-->
     <div class="container-fluid bg-body-tertiary">
         <div class="container">
@@ -180,7 +186,6 @@
     <!-- slider  end-->
 
     <!-- contianer 2 -->
-
     <div class="container text-center">
         <h2 class="text-warning lh-lg">Introduction</h2>
         <p class="text-primary lh-lg fs-5">Suspendisse ut magna vel velit cursus tempor ut nec nunc maruis vehicula <br>

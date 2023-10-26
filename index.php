@@ -1,3 +1,8 @@
+<?php 
+session_start();
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -6,61 +11,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link rel="stylesheet" href="style/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
-  <!-- singup modal -->
-  <div class="modal fade" id="signmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Signup Form
-                </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <?php if(isset($_GET['error']) || !empty($_GET['error'])){ ?>
-                        <p class="bg-danger p-4"><?php echo $_GET['error'] ?></p>
-                    <?php } ?>
+    <!-- singup modal -->
+
+    <!-- Modal -->
+    <div class="singupCotainerParent" style="display: flex; justify-content: center;">
+        <div class="singupCotainerChild" id='singupCotainerChild' style="width: 50%;
+  z-index: 9999;
+  position: fixed;
+  background-color: white;
+  padding: 30px; display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Signup Form</h5>
+                        <button type="button" class="btn-close" id="closeSingupModal" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="container my-2">
+                            <?php if (isset($_GET['error']) || !empty($_GET['error'])) { ?>
+                                <p class="bg-danger p-3 text-white h4 rounded-2"><?php echo $_GET['error'] ?></p>
+                            <?php } ?>
+                            <?php if (isset($_GET['success']) || !empty($_GET['success'])) { ?>
+                                <p class="bg-success p-3 text-white h4 rounded-2"><?php echo $_GET['success'] ?></p>
+                            <?php } ?>
+                        </div>
+                        <form method="post" action='singup.php'>
+                            <div class="mb-3">
+                                <label for="inputname" class="form-label">Name</label>
+                                <input type="Text" name='name' class="form-control" id="inputname" value="<?php if(isset($_SESSION['postData']['name'])){echo $_SESSION['postData']['name'];} ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputnumber" class="form-label">Mobile
+                                    Number</label>
+                                <input type="tel" name="phone" class="form-control" id="inputnumber" value="<?php if(isset($_SESSION['postData']['phone'])){echo $_SESSION['postData']['phone'];} ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email
+                                    address</label>
+                                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" value="<?php if(isset($_SESSION['postData']['email'])){echo $_SESSION['postData']['email'];} ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="text" name="password" class="form-control" id="password">
+                            </div>
+
+                            <div class="mb-3">''
+                                <label for="comfirm_pass" class="form-label">Confirm Password</label>
+                                <input type="text" name="comfirm_pass" class="form-control" id="comfirm_pass">
+                            </div>
+                            <div style="float: right;">
+                                <button type="submit" class="btn btn-primary">Sign
+                                    Up</button>
+                            </div>
+                        </form>
+                        <?php 
+                            unset($_SESSION['postData']);
+                        ?>
+                    </div>
                 </div>
-                <form method="post" action='singup.php'>
-                    <div class="mb-3">
-                        <label for="inputname" class="form-label">Name</label>
-                        <input type="Text" name='name' class="form-control" id="inputname">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputnumber" class="form-label">Mobile
-                            Number</label>
-                        <input type="tel" name="phone" class="form-control" id="inputnumber">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email
-                            address</label>
-                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="text" name="password" class="form-control" id="password">
-                    </div>
-                    
-                    <div class="mb-3">''
-                        <label for="comfirm_pass" class="form-label">Confirm Password</label>
-                        <input type="text" name="comfirm_pass" class="form-control" id="comfirm_pass">
-                    </div>
-                    <div style="float: right;">
-                        <button type="submit" class="btn btn-primary">Sign
-                            Up</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
-</div>
-
-  <!-- singup modal end-->
+    <!-- singup modal end-->
     <div class="container-fluid bg-body-tertiary">
         <div class="container">
             <div class="row" style="height: 70px;">
@@ -73,62 +89,48 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li class="nav-item mx-3">
-                                        <a href=""> <button type="button" class="btn btn-outline-warning "
-                                                style="border: none; color: black;"> <b>Home</b></button>
+                                        <a href=""> <button type="button" class="btn btn-outline-warning " style="border: none; color: black;"> <b>Home</b></button>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href=""> <button type="button" class="btn btn-outline-warning "
-                                                style="border: none; color: black;"><b>About</b></button> </a>
+                                        <a href=""> <button type="button" class="btn btn-outline-warning " style="border: none; color: black;"><b>About</b></button> </a>
                                     </li>
                                     <li class="nav-item mx-3">
-                                        <a href=""> <button type="button" class="btn btn-outline-warning "
-                                                style="border: none; color: black;"><b>Blog</b></button> </a>
+                                        <a href=""> <button type="button" class="btn btn-outline-warning " style="border: none; color: black;"><b>Blog</b></button> </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href=""><button type="button" class="btn btn-outline-warning mx-1 "
-                                                style="border: none; color: black;"><b>Contact</b></button> </a>
+                                        <a href=""><button type="button" class="btn btn-outline-warning mx-1 " style="border: none; color: black;"><b>Contact</b></button> </a>
                                     </li>
                                     <li>
-                                        <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal"
-                                            data-bs-target="#loginmodal">
+                                        <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#loginmodal">
                                             <b> Login</b>
                                         </button>
-                                        <div class="modal fade" id="loginmodal" tabindex="-1"
-                                            aria-labelledby="Loginmodel" aria-hidden="true">
+                                        <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="Loginmodel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="Loginmodel">Login</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form>
                                                             <div class="mb-3">
                                                                 <label for="exampleInputEmail1" class="form-label">Email
                                                                     address</label>
-                                                                <input type="email" class="form-control"
-                                                                    id="exampleInputEmail1"
-                                                                    aria-describedby="emailHelp">
+                                                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="exampleInputPassword1"
-                                                                    class="form-label">Password</label>
-                                                                <input type="password" class="form-control"
-                                                                    id="exampleInputPassword1">
+                                                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                                                <input type="password" class="form-control" id="exampleInputPassword1">
                                                             </div>
                                                             <div class="mb-3 form-check">
-                                                                <input type="checkbox" class="form-check-input"
-                                                                    id="exampleCheck1">
-                                                                <label class="form-check-label"
-                                                                    for="exampleCheck1">Remember
+                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                <label class="form-check-label" for="exampleCheck1">Remember
                                                                     me
                                                                 </label>
                                                             </div>
                                                             <div style="float: right;">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary">Login</button>
+                                                                <button type="submit" class="btn btn-primary">Login</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -138,8 +140,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal"
-                                            data-bs-target="#signmodal">
+                                        <button type="button" class="btn btn-warning mx-1" id="trigarSinupModal">
                                             <b> Sign up</b>
                                         </button>
                                     </li>
@@ -158,25 +159,20 @@
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://source.unsplash.com/random/900x800/?gym" class="d-block w-100"
-                        alt="..." style="height: 550px;">
+                    <img src="https://source.unsplash.com/random/900x800/?gym" class="d-block w-100" alt="..." style="height: 550px;">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://source.unsplash.com/random/900x800/?gym-boy" class="d-block w-100"
-                        alt="..." style="height: 550px;">
+                    <img src="https://source.unsplash.com/random/900x800/?gym-boy" class="d-block w-100" alt="..." style="height: 550px;">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://source.unsplash.com/random/900x800/?gym-man" class="d-block w-100" alt="..."
-                        style="height: 550px;">
+                    <img src="https://source.unsplash.com/random/900x800/?gym-man" class="d-block w-100" alt="..." style="height: 550px;">
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-                data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-                data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -240,7 +236,7 @@
 
     <!-- contianer 2 end -->
 
-  <!-- container-3 -->
+    <!-- container-3 -->
     <div class="container my-5">
         <div class="row">
             <div class="col-6">
@@ -392,20 +388,14 @@
                     <h5 class="text-warning mb-4">Etiam mollis ornare</h5>
                     <div class="row">
                         <div class="col-12 mb-1">
-                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.48 21.jpg" alt=""
-                                style="width: 30%; height: 45px;">
-                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.48 22.jpg" alt=""
-                                style="width: 30%; height: 45px;">
-                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.48 23.jpg" alt=""
-                                style="width: 30%; height: 45px;">
+                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.48 21.jpg" alt="" style="width: 30%; height: 45px;">
+                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.48 22.jpg" alt="" style="width: 30%; height: 45px;">
+                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.48 23.jpg" alt="" style="width: 30%; height: 45px;">
                         </div>
                         <div class="col-12">
-                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.48.jpg" alt=""
-                                style="width: 30%; height: 45px;">
-                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.49 24.jpg" alt=""
-                                style="width: 30%; height: 45px;">
-                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.49 25.jpg" alt=""
-                                style="width: 30%; height: 45px;">
+                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.48.jpg" alt="" style="width: 30%; height: 45px;">
+                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.49 24.jpg" alt="" style="width: 30%; height: 45px;">
+                            <img src="images/WhatsApp Image 2023-06-11 at 10.55.49 25.jpg" alt="" style="width: 30%; height: 45px;">
                         </div>
                     </div>
                     <p class="text-white mt-4 ">Lorem ipsum dolor sit amet consectetur ,
@@ -418,9 +408,9 @@
     </footer>
 
     <!-- footer end -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

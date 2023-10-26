@@ -52,3 +52,13 @@
     font-weight: 600 !important;
     margin-top: 20px !important;
   }
+.singupCotainerParent{
+  
+}
+.singupCotainerChild{
+  width: 50%;
+  z-index: 9999;
+  position: fixed;
+  background-color: white;
+  padding: 30px;
+}

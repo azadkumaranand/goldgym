@@ -18,12 +18,12 @@ session_start();
     <!-- singup modal -->
 
     <!-- Modal -->
-    <div class="singupCotainerParent" style="display: flex; justify-content: center;">
+    <!-- <div class="singupCotainerParent" style="display: flex; justify-content: center;">
         <div class="singupCotainerChild" id='singupCotainerChild' style="width: 50%;
-  z-index: 9999;
-  position: fixed;
-  background-color: white;
-  padding: 30px; display: none;">
+            z-index: 9999;
+            position: fixed;
+            background-color: white;
+            padding: 30px; display: none;">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -75,84 +75,9 @@ session_start();
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- singup modal end-->
-    <div class="container-fluid bg-body-tertiary">
-        <div class="container">
-            <div class="row" style="height: 70px;">
-                <div class="col-6 my-2">
-                    <h1>GolGym</h1>
-                </div>
-                <div class="col-6 d-flex justify-content-end">
-                    <nav class="navbar navbar-expand-lg ">
-                        <div class="container-fluid">
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item mx-3">
-                                        <a href=""> <button type="button" class="btn btn-outline-warning " style="border: none; color: black;"> <b>Home</b></button>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href=""> <button type="button" class="btn btn-outline-warning " style="border: none; color: black;"><b>About</b></button> </a>
-                                    </li>
-                                    <li class="nav-item mx-3">
-                                        <a href=""> <button type="button" class="btn btn-outline-warning " style="border: none; color: black;"><b>Blog</b></button> </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href=""><button type="button" class="btn btn-outline-warning mx-1 " style="border: none; color: black;"><b>Contact</b></button> </a>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#loginmodal">
-                                            <b> Login</b>
-                                        </button>
-                                        <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="Loginmodel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="Loginmodel">Login</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form>
-                                                            <div class="mb-3">
-                                                                <label for="exampleInputEmail1" class="form-label">Email
-                                                                    address</label>
-                                                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="exampleInputPassword1" class="form-label">Password</label>
-                                                                <input type="password" class="form-control" id="exampleInputPassword1">
-                                                            </div>
-                                                            <div class="mb-3 form-check">
-                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                                <label class="form-check-label" for="exampleCheck1">Remember
-                                                                    me
-                                                                </label>
-                                                            </div>
-                                                            <div style="float: right;">
-                                                                <button type="submit" class="btn btn-primary">Login</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="btn btn-warning mx-1" id="trigarSinupModal">
-                                            <b> Sign up</b>
-                                        </button>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include "header.php"; ?>
     <!-- slider  -->
     <div class="container-fluid p-0 m-0">
 
@@ -410,7 +335,7 @@ session_start();
     <!-- footer end -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-    <script src="js/script.js"></script>
+    <!-- <script src="js/script.js"></script>-->
 </body>
 
 </html>

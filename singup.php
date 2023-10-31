@@ -14,31 +14,30 @@ function nameValidation($name){
     return preg_match($Pattern, $name);
 }
 
-$hello;
-
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $name = htmlspecialchars(strtolower($_POST['name']));
     $phone = htmlspecialchars($_POST['phone']);
     $email = htmlspecialchars(strtolower($_POST['email']));
-    $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $confirm_pass = $_POST['comfirm_pass'];
+    $pass = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
+    $confirm_pass = htmlspecialchars($_POST['comfirm_pass']);
+
+    $_SESSION['postData'] = $_POST;
 
     $isPassMatched = password_verify($confirm_pass, $pass);
-    if(!$isPassMatched){
-        $error = "Password and confirm Password should be matched!";
-        header("Location: singup.php/?error=$error");
+    
+    if(empty($_POST['password']) || empty($_POST['comfirm_pass'])){
+        header("Location: singup.php/?error=Please fill all the credentials!");
         exit();
     }
-
     // $error = array();
-    $hello = $_POST;
 
     if(!nameValidation($name)){
         $error = "Please enter a valid name";
+        // $_SESSION['error'] = $error;
         header("Location: singup.php/?error=$error");
         exit();
     }
-    $_SESSION['postData'] = $_POST;
+    echo $_POST['name'];
     if(!phoneValidation($phone)){
         $error = "Please enter a vlid phone number";
         header("Location: singup.php/?error=$error");
@@ -46,6 +45,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     }
     if(!emailValidation($email)){
         $error = "Please enter a vlid email";
+        header("Location: singup.php/?error=$error");
+        exit();
+    }
+    if(!$isPassMatched){
+        $error = "Password and confirm Password should be matched!";
         header("Location: singup.php/?error=$error");
         exit();
     }
@@ -95,13 +99,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Singup Page | Gold Gym</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
 <?php include "header.php"; 
-echo "<h1>".$hello['name']."</h1>";
 ?>
 
     <div class="singupCotainerParent" style="display: flex; justify-content: center;">
@@ -130,30 +133,25 @@ echo "<h1>".$hello['name']."</h1>";
                         <form method="post" action=''>
                             <div class="mb-3">
                                 <label for="inputname" class="form-label">Name</label>
-                                <input type="Text" name='name' class="form-control" id="inputname" value="<?php if (isset($_POST['name'])) {
-                                                                                                                echo $_POST['name'];
-                                                                                                            } ?>">
+                                <input type="Text" name='name' class="form-control" id="inputname" value="<?php echo isset($_SESSION['postData']['name'])? $_SESSION['postData']['name'] : "" ?>">
                             </div>
+                            
                             <div class="mb-3">
                                 <label for="inputnumber" class="form-label">Mobile
                                     Number</label>
-                                <input type="tel" name="phone" class="form-control" id="inputnumber" value="<?php if (isset($_POST['phone'])) {
-                                                                                                                echo $_POST['phone'];
-                                                                                                            } ?>">
+                                <input type="tel" name="phone" class="form-control" id="inputnumber" value="<?php echo isset($_SESSION['postData']['phone'])? $_SESSION['postData']['phone'] : "" ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email
                                     address</label>
-                                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" value="<?php if (isset($_POST['email'])) {
-                                                                                                                                            echo $_POST['email'];
-                                                                                                                                        } ?>">
+                                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" value="<?php echo isset($_SESSION['postData']['email'])? $_SESSION['postData']['email'] : "" ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="text" name="password" class="form-control" id="password">
                             </div>
 
-                            <div class="mb-3">''
+                            <div class="mb-3">
                                 <label for="comfirm_pass" class="form-label">Confirm Password</label>
                                 <input type="text" name="comfirm_pass" class="form-control" id="comfirm_pass">
                             </div>

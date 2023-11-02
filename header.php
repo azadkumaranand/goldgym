@@ -22,6 +22,7 @@
                                     <li class="nav-item">
                                         <a href=""><button type="button" class="btn btn-outline-warning mx-1 " style="border: none; color: black;"><b>Contact</b></button> </a>
                                     </li>
+                                    <?php if(!isset($_SESSION['user_name'])){ ?>
                                     <li>
                                         <a href="login.php"><button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#loginmodal">
                                             <b> Login</b>
@@ -32,7 +33,13 @@
                                             <b> Sign up</b>
                                         </button></a>
                                     </li>
-
+                                    <?php }else{ ?>
+                                        <li><button type="button" class="mx-1 border-0" data-bs-toggle="modal" data-bs-target="#loginmodal">
+                                            <b><?php echo $_SESSION['user_name'];  ?></b>
+                                        </button>
+                                        <a href="logout.php">
+                                        <button class="btn btn-warning">Logout</button></a></li>
+                                        <?php } ?>
                                 </ul>
                             </div>
                         </div>
@@ -41,3 +48,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function logout(){
+            alert("hello")
+            <?php 
+                // unset($_SESSION['user_name']);
+                // header("Location: index.php");
+            ?>
+        }
+    </script>

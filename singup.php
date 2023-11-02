@@ -18,17 +18,18 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $name = htmlspecialchars(strtolower($_POST['name']));
     $phone = htmlspecialchars($_POST['phone']);
     $email = htmlspecialchars(strtolower($_POST['email']));
-    $pass = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
+    $pass = htmlspecialchars($_POST['password']);
     $confirm_pass = htmlspecialchars($_POST['comfirm_pass']);
 
     $_SESSION['postData'] = $_POST;
 
-    $isPassMatched = password_verify($confirm_pass, $pass);
+    $isPassMatched = $confirm_pass === $pass;
     
     if(empty($_POST['password']) || empty($_POST['comfirm_pass'])){
         header("Location: singup.php/?error=Please fill all the credentials!");
         exit();
     }
+    
     // $error = array();
 
     if(!nameValidation($name)){
@@ -37,7 +38,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         header("Location: singup.php/?error=$error");
         exit();
     }
-    echo $_POST['name'];
+    
     if(!phoneValidation($phone)){
         $error = "Please enter a vlid phone number";
         header("Location: singup.php/?error=$error");
@@ -74,7 +75,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         // $pass = "azdjj";
 
         if($stmt->execute()){
-            header("Location: singup.php?success=Form Submitted Successfully!");
+            header("Location: singup.php?success=User created Successfully!");
         }else{
             header("Location: singup.php?error=Some went wrong!");
 

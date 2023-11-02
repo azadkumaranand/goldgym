@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     }
 
     if(emailValidation($email)){
-        echo "Hello".$email;
+        // echo "Hello".$email;
         $query = "SELECT * FROM users WHERE email='$email'";
         $result = $conn->query($query);
         // echo "<pre>";
@@ -31,14 +31,19 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         // echo "Hello".$email;
         if($result->num_rows == 1){
             $row = $result->fetch_assoc();
+            echo  $row['email'].$row['name'].$row['password'];
             // echo "<pre>";
             // print_r($row);
             // echo "</pre>";
-            if(password_verify($pass, $row['password'])){
+            if($pass === $row['password']){
                 $_SESSION['user_name'] = $row['name'];
+                header("Location: index.php");
             }else{
-                header("Location: login.php/?error=Please enter correct password");
+                // header("Location: login.php/?error=Please enter correct password");
+                echo "wrong password";
             }
+        }else{
+            header("Location: login.php/?error=Your email is not registred!");
         }
 
     }
@@ -75,7 +80,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     <div class="modal-header">
                         <h5 class="modal-title">Login Form</h5>
                     </div>
-                    <?php echo $_SESSION['user_name'] ?>
+                    <?php if(isset($_SESSION['user_name'])){echo $_SESSION['user_name'];} ?>
                     <div class="modal-body">
                         <div class="container my-2">
                             <?php if (isset($_GET['error']) || !empty($_GET['error'])) { ?>

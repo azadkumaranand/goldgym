@@ -1,6 +1,6 @@
 <?php 
 session_start();
-
+include "connect.php";
 ?>
 
 <!doctype html>
@@ -113,51 +113,35 @@ session_start();
             augue in tincidunt porta, purus ipsum blandit massa.
         </p>
     </div>
-    <div class="container d-flex justify-content-between mt-5">
-        <div class="card" style="width: 23%;">
-            <img src="images/gym2.jpeg" class="card-img-top" alt="gym1stimge">
-            <div class="card-body">
-                <h5 class="card-title text-warning">Lorem ipsum dolor #1</h5>
-                <p class="card-text"> that justifies statement is that gym has long been associated with healthy
-                    lifestyle.</p>
-                <a href="" class="btn btn-warning text-light">DETAIL</a>
-
-            </div>
-        </div>
-        <div class="card" style="width: 23%;">
-            <img src="images/gym3.jpeg" class="card-img-top" alt="gym1stimge">
-            <div class="card-body">
-                <h5 class="card-title text-warning">Lorem ipsum dolor #2</h5>
-                <p class="card-text">You can build strength elsewhere developing it there.
-                    CSCS, a trainer,
-
-                </p>
-                <a href="" class="btn btn-warning text-light">READ MORE </a>
-
-            </div>
-        </div>
-        <div class="card" style="width: 23%;">
-            <img src="images/gym4.jpeg" class="card-img-top" alt="gym1stimge">
-            <div class="card-body">
-                <h5 class="card-title text-warning">Lorem ipsum dolor #3</h5>
-                <p class="card-text">this fitness you a specific objective to concentrate on as you begin
-                    strength training.
-                </p>
-                <a href="" class="btn btn-warning text-light">DETAIL</a>
-
-            </div>
-        </div>
-        <div class="card" style="width: 23%;">
-            <img src="images/gym5.jpeg" class="card-img-top" alt="gym1stimge">
-            <div class="card-body">
-                <h5 class="card-title text-warning">Lorem ipsum dolor #4</h5>
-                <p class="card-text">When many of us set a health or fitness goal, think to consult on
-                    the subject.</p>
-                <a href="" class="btn btn-warning text-light">READ MORE</a>
-
-            </div>
-        </div>
+    <div class="container d-flex justify-content-between flex-wrap mt-5">
+        <?php
+            // echo "<h4>Requested valued".$_POST['limit']."</h4>";
+            $limit = isset($_POST['limit'])?$_POST['limit']:4;
+            $blogquery = "SELECT * FROM blogs ORDER BY id ASC LIMIT $limit";
+            $result = $conn->query($blogquery);
+            $noRows = $result->num_rows;
+            while($noRows>0){
+                $row = $result->fetch_assoc();
+                // echo "<h4>".$row['title']."</h4>";
+                echo '<div class="card" style="width: 300px;">
+                <img src="images/gym2.jpeg" class="card-img-top" alt="gym1stimge">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">'.$row["title"].'</h5>
+                    <p class="card-text">'.$row["shortdesc"].'</p>
+                    <a href="" class="btn btn-warning text-light">DETAIL</a>
+                </div>
+            </div>';
+                $noRows--;
+            }
+        ?>
+        <?php if($noRows>0){ ?>
+        <form action="" method="post">
+            <input type="hidden" name="limit" value="<?php echo isset($_POST['limit'])?$_POST['limit']+4:8;?>">
+            <button type="submit" class="btn btn-warning my-3">Load More</button>
+        </form>
+        <?php } ?>
     </div>
+    
 
     <!-- contianer 2 end -->
 

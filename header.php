@@ -1,3 +1,42 @@
+<style>
+    .nav_items{
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .nav-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .menubar{
+        display: none;
+    }
+    @media(max-width: 1200px){
+        #navbarSupportedContent{
+            display: none;
+            background-color: red;
+            z-index: 999;
+            width: 100%;
+            position: fixed;
+            left: 0;
+        }
+        .nav_items{
+            z-index: 9999;
+            padding: 0;
+            flex-direction: column;
+        }
+        .menubar{
+            display: block;
+            font-size: 23px;
+            font-weight: 800;
+        }
+        /* .menubar{
+            display: block;
+        } */
+    }
+</style>
 <div class="container-fluid bg-body-tertiary">
         <div class="container">
             <div class="row" style="height: 70px;">
@@ -5,11 +44,14 @@
                     <h1>GolGym</h1>
                 </div>
                 <div class="col-6 d-flex justify-content-end">
-                    <nav class="navbar navbar-expand-lg ">
+                    <nav class="nav-container">
                         <div class="container-fluid">
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item mx-3">
+                            <div class="menubar" id="menubar">
+                            <i class="fa-solid fa-bars"></i>
+                            </div>
+                            <div class="navbarSupportedContent" id="navbarSupportedContent">
+                                <ul class="nav_items">
+                                    <li class="">
                                         <a href=""> <button type="button" class="btn btn-outline-warning " style="border: none; color: black;"> <b>Home</b></button>
                                         </a>
                                     </li>
@@ -48,13 +90,13 @@
             </div>
         </div>
     </div>
-
     <script>
-        function logout(){
-            alert("hello")
-            <?php 
-                // unset($_SESSION['user_name']);
-                // header("Location: index.php");
-            ?>
-        }
+        // function logout(){
+        //     alert("hello")
+        //     <?php 
+        //         // unset($_SESSION['user_name']);
+        //         // header("Location: index.php");
+        //     ?>
+        // }
+        
     </script>

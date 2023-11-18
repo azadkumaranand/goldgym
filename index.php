@@ -11,6 +11,7 @@ include "connect.php";
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gold Gym</title>
     <link rel="stylesheet" href="style/style.css">
+    <script src="https://kit.fontawesome.com/b5e6f58036.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
@@ -124,13 +125,13 @@ include "connect.php";
                 $row = $result->fetch_assoc();
                 // echo "<h4>".$row['title']."</h4>";
                 echo '<div class="card" style="width: 300px;">
-                <img src="images/gym2.jpeg" class="card-img-top" alt="gym1stimge">
-                <div class="card-body">
-                    <h5 class="card-title text-warning">'.$row["title"].'</h5>
-                    <p class="card-text">'.$row["shortdesc"].'</p>
-                    <a href="" class="btn btn-warning text-light">DETAIL</a>
-                </div>
-            </div>';
+                        <img src="images/gym2.jpeg" class="card-img-top" alt="gym1stimge">
+                        <div class="card-body">
+                            <h5 class="card-title text-warning">'.$row["title"].'</h5>
+                            <p class="card-text">'.$row["shortdesc"].'</p>
+                            <a href="" class="btn btn-warning text-light">DETAIL</a>
+                        </div>
+                    </div>';
                 $noRows--;
             }
         ?>
@@ -321,5 +322,20 @@ include "connect.php";
     </script>
     <!-- <script src="js/script.js"></script>-->
 </body>
+
+<script>
+    const menubar = document.getElementById("menubar");
+    const navbarSupportedContent = document.getElementById('navbarSupportedContent');
+            menubar.addEventListener('click', function (){
+                // alert("hello world");
+                if(navbarSupportedContent.style.display == "block"){
+                    navbarSupportedContent.style.display = "none";
+                    menubar.innerHTML = `<i class="fa-solid fa-bars"></i>`;
+                }else{
+                    navbarSupportedContent.style.display = "block";
+                    menubar.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
+                }
+            })
+</script>
 
 </html>

@@ -114,7 +114,7 @@ include "connect.php";
             augue in tincidunt porta, purus ipsum blandit massa.
         </p>
     </div>
-    <div class="container d-flex justify-content-between flex-wrap mt-5">
+    <div class="container d-flex justify-content-evenly flex-wrap mt-5">
         <?php
             // echo "<h4>Requested valued".$_POST['limit']."</h4>";
             $limit = isset($_POST['limit'])?$_POST['limit']:4;
@@ -124,7 +124,7 @@ include "connect.php";
             while($noRows>0){
                 $row = $result->fetch_assoc();
                 // echo "<h4>".$row['title']."</h4>";
-                echo '<div class="card" style="width: 300px;">
+                echo '<div class="card my-2" style="width: 300px;">
                         <img src="images/gym2.jpeg" class="card-img-top" alt="gym1stimge">
                         <div class="card-body">
                             <h5 class="card-title text-warning">'.$row["title"].'</h5>
@@ -149,7 +149,7 @@ include "connect.php";
     <!-- container-3 -->
     <div class="container my-5">
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6">
                 <h2 class="text-warning">Pellentesque fermentum mauris et posuere</h2>
                 <p class="text-primary">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores, fuga.</p>
                 <div class="card a1">
@@ -174,7 +174,7 @@ include "connect.php";
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="row">
                     <div class="col-6">
                         <h3 class="text-warning">Categories</h3>
@@ -196,10 +196,10 @@ include "connect.php";
                     <div class="container">
                         <h5 class="text-warning releted">Related Posts</h5>
                         <div class="row mt-3">
-                            <div class="col-4">
-                                <img src="images/cycle.jpg" alt="" class="w-100" style="height: 70%;">
+                            <div class="col-sm-4">
+                                <img src="images/cycle.jpg" alt="" class="w-100">
                             </div>
-                            <div class="col-8">
+                            <div class="col-sm-8">
                                 <h5 class="text-warning-emphasis"> Lorem ipsum dolar</h5>
                                 <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
                                     fugit incidunt ipsum
@@ -211,10 +211,10 @@ include "connect.php";
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4">
-                                <img src="images/stock.jpg" alt="" class="w-100" style="height: 70%;">
+                            <div class="col-sm-4">
+                                <img src="images/stock.jpg" alt="" class="w-100">
                             </div>
-                            <div class="col-8">
+                            <div class="col-sm-8">
                                 <h5 class="text-warning-emphasis"> Lorem ipsum dolar</h5>
                                 <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
                                     fugit incidunt ipsum
@@ -226,10 +226,10 @@ include "connect.php";
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4">
-                                <img src="images/Untitled.jpg" alt="" class="w-100" style="height: 70%; ">
+                            <div class="col-sm-4">
+                                <img src="images/Untitled.jpg" alt="" class="w-100">
                             </div>
-                            <div class="col-8">
+                            <div class="col-sm-8">
                                 <h5 class="text-warning-emphasis "> Lorem ipsum dolar</h5>
                                 <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
                                     fugit incidunt ipsum
@@ -250,9 +250,9 @@ include "connect.php";
     <!-- <p>Hello testing 8&gt5</p> -->
     <!-- footer -->
     <footer class="bg-dark">
-        <div class="container d-flex align-items-center  " style="height: 430px;">
-            <div class="row ">
-                <div class="col  text-white  ">
+        <div class="container d-flex align-items-center">
+            <div class="row">
+                <div class="col-md-3 text-white order-5">
                     <h5 class="text-warning mb-4">prion eu posuere felis</h5>
                     <div class="card " style="width: 16rem;">
                         <p class="px-3">Lorem ipsum dolor sit, amet consectetur
@@ -267,7 +267,7 @@ include "connect.php";
                     <p class=" mt-5"><a href="" class="text-white " style="list-style: none; font-size: 15px;">Copyright
                             2016 Your Company Name</a></p>
                 </div>
-                <div class="col text-center">
+                <div class="col-md-3 text-left">
                     <h5 class="text-warning mb-4 ">Nulla tortor dolor</h5>
                     <p><a href="" class="text-warning">Lorem ipsum dolor si</a></p>
                     <p><a href="" class="text-warning">Lorem ipsum dolor si</a></p>
@@ -276,7 +276,7 @@ include "connect.php";
                     <p><a href="" class="text-warning">Lorem ipsum dolor si</a></p>
                     <p><a href="" class="text-warning">Lorem ipsum dolor si</a></p>
                 </div>
-                <div class="col">
+                <div class="col-md-3">
                     <h5 class="text-warning mb-4">Etiam mollis ornare</h5>
                     <p class="text-white">Lorem ipsum dolor sit amet consectetur ,
                         adipisicing elit. Totam, quae!
@@ -294,7 +294,7 @@ include "connect.php";
                     <a href="" target="_blank"><button class="btn  btn-secondary " type="submit">READ MORE</button></a>
 
                 </div>
-                <div class="col">
+                <div class="col-md-3">
                     <h5 class="text-warning mb-4">Etiam mollis ornare</h5>
                     <div class="row">
                         <div class="col-12 mb-1">
